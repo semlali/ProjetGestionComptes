@@ -42,6 +42,7 @@ public class Client implements Serializable {
 	public Long getCodeClient() {
 		return codeClient;
 	}
+	
 	public void setCodeClient(Long codeClient) {
 		this.codeClient = codeClient;
 	}
