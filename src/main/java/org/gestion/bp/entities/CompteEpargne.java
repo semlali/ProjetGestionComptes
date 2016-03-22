@@ -2,6 +2,11 @@ package org.gestion.bp.entities;
 
 import java.util.Date;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("CE")
 public class CompteEpargne extends Compte{
 	
 	/**

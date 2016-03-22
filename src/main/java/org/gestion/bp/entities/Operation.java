@@ -3,6 +3,17 @@ package org.gestion.bp.entities;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 public class Operation implements Serializable{
     
 	/**
@@ -10,10 +21,19 @@ public class Operation implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long numeroOperation;
+	
 	private Date dateOperation;
 	private double montant;
+	
+	@ManyToOne
+	@JoinColumn(name="CODE_COMPTE")
 	private Compte compte;
+	
+	@ManyToOne
+	@JoinColumn(name="CODE_EMPLOYE")
 	private employe employe;
 	
 	

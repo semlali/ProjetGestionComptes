@@ -3,6 +3,13 @@ package org.gestion.bp.entities;
 import java.io.Serializable;
 import java.util.Collection;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+@Entity
 public class groupe implements Serializable{
 	
 	/**
@@ -10,8 +17,12 @@ public class groupe implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long codeGroupe;
 	private String nomGroupe;
+	
+	@ManyToMany(mappedBy="groupes")
 	Collection<employe> employes;
 	
 	

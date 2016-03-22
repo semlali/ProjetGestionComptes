@@ -4,6 +4,19 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+@Entity
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="TYPE_COMPTE",discriminatorType=DiscriminatorType.STRING,length=4)
 public class Compte implements Serializable{
 
 	/**
@@ -12,11 +25,20 @@ public class Compte implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
+	@Id          //id string donc il est fournit par l'utilisateur
 	private String codeCompte;
 	private Date dateCreation;
 	private double solde;
+	
+	@ManyToOne
+	@JoinColumn(name="CODE_CLIENT")     //donner UN NOM a la clé étrangére
 	private Client client;
+	
+	@ManyToOne
+	@JoinColumn(name="CODE_EMPLOYE")
 	private employe employe;
+	
+	@OneToMany(mappedBy="compte")
 	private Collection<Operation> operations;
 	
 	public Compte() {

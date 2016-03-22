@@ -3,10 +3,12 @@ package org.gestion.bp.entities;
 import java.io.Serializable;
 import java.util.Collection;
 
+import javax.jws.Oneway;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -24,6 +26,8 @@ public class Client implements Serializable {
 	private Long codeClient;
 	private String nomClient;
 	private String adresseClient;
+	
+	@OneToMany(mappedBy="client")
 	private Collection<Compte> comptes;
 	
 	public Client() {
